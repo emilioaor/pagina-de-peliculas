@@ -13,7 +13,7 @@
 @endsection
 
 @section('title')
-	Ver {{ $movie->title }} ({{ $movie->year }}) online o descargar HD gratis
+	{{ $movie->title }} ({{ $movie->year }}) online o descargar HD desde 10 bsF
 @endsection
 
 @section('jumbotron-h1')
@@ -21,7 +21,7 @@
 @endsection
 
 @section('jumbotron-p')
-	Ver y descargar la película  <strong>{{ $movie->title }} online</strong> en calidad HD 1080p y audio latino. Descarga disponible por MEGA
+	Venta <strong>{{ $movie->title }} online</strong> para descargar en calidad HD 1080p y audio latino. Descarga disponible por MEGA
 @endsection
 
 @section('content')
@@ -36,33 +36,31 @@
 	<div class="container">
 		
 		<h2 class="text-center">{{ $movie->title }}</h2><hr>
+
 		<div class="row detail-movie">
-			
+
 			<div class="col-sm-6">
 				<img src="{{ url($movie->image) }}" id="image-movie" class="img-responsive" alt="{{ $movie->title }} online o descargar" title="{{ $movie->title }} online o descargar">
 			</div>
 			<div class="col-sm-6">
 				<br>
 				<p class="text-justify">{{ $movie->synopsis }}<p>
-
 				<p>
-					<strong>Genero: </strong>
+					<strong>Genero(s): </strong>
 					@foreach($movie->genres as $genre)
 						>{{ $genre->name }}
 					@endforeach
 				</p>
-
 				<p>
 					<strong>Calidad: </strong> 1080p
 				</p>
-
 				<p>
 					<strong>Audio: </strong>Español Latino
 				</p>
-
 				<p>
 					<strong>Audio Descarga: </strong>Español Latino e ingles subtitulada
 				</p>
+
 				<br>
 				<div class="alert alert-info" role="alert">
 					<p><strong>¿Sabias que? </strong>Una web requiere gastos de alojamiento, mantenimiento y muchas horas de trabajo y permanece online gracias al apoyo de quienes nos visitan. Una pequeña donación será de gran ayuda para continuar en línea mucho mas tiempo. Ayudanos!</p>
@@ -98,7 +96,7 @@
 			<br>
 			<div class="alert alert-danger" role="alert">
 				<strong>ATENCION: </strong>
-				Recuerde que las películas estan alojadas en servidores ajenos a esta web. Por el momento este contenido solo esta disponible para descargar y puede que en menor calidad. Gracias por su comprensión.
+				Por el momento este contenido solo esta disponible para descargar y puede que en menor calidad.
 			</div>
 		@endif
 
@@ -124,16 +122,20 @@
 				<div id="spaceVideo" class="embed-responsive embed-responsive-16by9">
 				  	
 				</div>
-			</div>
-		</div>
 
-		<div class="loading text-center" id="loading">
-			<img src="{{ url('images/loading.gif') }}" class="img-responsive img-limit" >
-		</div>
+				<div class="row spaceVideo">
+					<p class="text-center spaceClose"><a href="JavaScript:closeAll()" class="btn btn-danger">Cerrar</a></p>
+					<p class="text-center" id="thevideos2">{!! $movie->thevideos2 !!}</p>
+					<div class="col-md-8 col-md-offset-2">
+						<div id="spaceVideo" class="embed-responsive embed-responsive-16by9">
+						  	
+						</div>
+					</div>
+				</div>
 
-		<div class="row">
-			<div class="spaceDownload col-md-12 text-center">
-				<p>Seleccione un metodo de descarga.</p>
+				<div class="loading text-center" id="loading">
+					<img src="{{ url('images/loading.gif') }}" class="img-responsive img-limit" >
+				</div>
 
 				@if($movie->download <> ' ')
 					<a target="_blank" class="button-def" href="http://adf.ly/11273555/http://adf.ly/11273555/{{ url('download/'.dechex($movie->id) ) }}" rel="nofollow">MEGA</a>

@@ -59,36 +59,28 @@
 			</div>
 		</div>
 	</div>
-
 	@include('template.nav')
-
 	<section class="main">
 		@yield('content')
 	</section>
-
 	<aside>
 		
 		<div class="container">
 			<hr class="hr">
 			<div class="row">
-
 				<div class="col-md-6">
 					<h3>Suscribir</h3>
 					<form action="{{ url('subscriber/add') }}" method="post">
-
 						{{ csrf_field() }}
-
 						<div class="form-group">
 							<label for="email" class="sr-only">Correo</label>
 							<input type="text" class="form-control" name="email" placeholder="ejemplo@mail.com" required>
 						</div>
-
 						<div class="form-group">
 							<button type="submit" class="button-p">Suscribir</button>
 						</div>
 					</form>
 				</div>
-
 				<div class="col-md-6">
 					<h3>Redes Sociales</h3>
 					<div class=".col-md.12">
@@ -98,11 +90,9 @@
 						<a target="_blank" href="https://www.youtube.com/channel/UCCfK6k6DKyv1jCxHFJ3mUzg" rel="nofollow"><span class="social-icon youtube"></span></a>
 					</div>
 				</div>
-
 			</div>
 		</div>
 	</aside>
-
 	<footer>
 		<div class="container">
 			<p class="text-center">Películas Online | Películas Gratis | Descargar Películas | Películas HD 1080p | Descargar Películas por MEGA</p>
