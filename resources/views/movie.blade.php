@@ -33,13 +33,13 @@
       js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.7&appId=1651000515218750";
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));</script>
-	<div class="container-fluid">
+	<div class="container">
 		
 		<h2 class="text-center">{{ $movie->title }}</h2><hr>
-		<div class="row">
+		<div class="row detail-movie">
 			
 			<div class="col-sm-6">
-				<img src="{{ url($movie->image) }}" class="img-responsive" alt="{{ $movie->title }} online o descargar" title="{{ $movie->title }} online o descargar">
+				<img src="{{ url($movie->image) }}" id="image-movie" class="img-responsive" alt="{{ $movie->title }} online o descargar" title="{{ $movie->title }} online o descargar">
 			</div>
 			<div class="col-sm-6">
 				<br>
@@ -103,21 +103,21 @@
 		@endif
 
 		<div class="row spaceButtons">
-			<div class="col-sm-6 col-md-3 text-center"><br><a href="JavaScript:obtenerVideo('{{ url($movie->id.'/video/1') }}')" class="btn btn-primary">Ver Trailer</a></div>
+			<div class="col-sm-6 col-md-3 text-center"><br><button onclick="JavaScript:obtenerVideo('{{ url($movie->id.'/video/1') }}')" class="button-p">Ver Trailer</button></div>
 
 			@if($movie->completa=='SI')
-				<div class="col-sm-6 col-md-3 text-center"><br><a href="JavaScript:obtenerVideo('{{ url($movie->id.'/video/2') }}')" class="btn btn-primary">Ver en UpTobox</a></div>
+				<div class="col-sm-6 col-md-3 text-center"><br><button onclick="JavaScript:obtenerVideo('{{ url($movie->id.'/video/2') }}')" class="button-p">Ver en UpTobox</button></div>
 			@endif
 
 			@if($movie->completa=='SI')
-				<div class="col-sm-6 col-md-3 text-center"><br><a href="JavaScript:obtenerVideo('{{ url($movie->id.'/video/3') }}')" class="btn btn-primary">Ver en TheVideos</a></div>
+				<div class="col-sm-6 col-md-3 text-center"><br><button onclick="JavaScript:obtenerVideo('{{ url($movie->id.'/video/3') }}')" class="button-p">Ver en TheVideos</button></div>
 			@endif()
 
-			<div class="col-sm-6 col-md-3 text-center"><br><a href="JavaScript:Download()" class="btn btn-primary">Descargar</a></div>	
+			<div class="col-sm-6 col-md-3 text-center"><br><button onclick="JavaScript:Download()" class="button-p">Descargar</button></div>	
 		</div>
 
 		<div class="row spaceVideo">
-			<p class="text-center spaceClose"><a href="JavaScript:closeAll()" class="btn btn-danger">Cerrar</a></p>
+			<p class="text-center spaceClose"><button onclick="JavaScript:closeAll()" class="button-d">Cerrar</button></p>
 			<p class="text-center" id="thevideos2">{!! str_replace('href="', 'href="http://adf.ly/11273555/http://adf.ly/11273555/', $movie->thevideos2) !!}</p>
 			<div class="col-md-8 col-md-offset-2">
 				
@@ -136,15 +136,15 @@
 				<p>Seleccione un metodo de descarga.</p>
 
 				@if($movie->download <> ' ')
-					<a target="_blank" class="btn btn-default" href="http://adf.ly/11273555/http://adf.ly/11273555/{{ url('download/'.dechex($movie->id) ) }}" rel="nofollow">MEGA</a>
+					<a target="_blank" class="button-def" href="http://adf.ly/11273555/http://adf.ly/11273555/{{ url('download/'.dechex($movie->id) ) }}" rel="nofollow">MEGA</a>
 				@endif
 
 				@if($movie->uploaded <> ' ')
-					<a target="_blank" class="btn btn-default" href="http://adf.ly/11273555/http://adf.ly/11273555/{{ $movie->uploaded }}" rel="nofollow">Uploaded</a>
+					<a target="_blank" class="button-def" href="http://adf.ly/11273555/http://adf.ly/11273555/{{ $movie->uploaded }}" rel="nofollow">Uploaded</a>
 				@endif
 
 				@if($movie->turbobit <> ' ')
-					<a target="_blank" class="btn btn-default" href="http://adf.ly/11273555/http://adf.ly/11273555/{{ $movie->turbobit }}" rel="nofollow">Turbobit</a>
+					<a target="_blank" class="button-def" href="http://adf.ly/11273555/http://adf.ly/11273555/{{ $movie->turbobit }}" rel="nofollow">Turbobit</a>
 				@endif
 			</div>
 		</div>
@@ -166,7 +166,7 @@
 				
 				@foreach($moviesRelations as $mr)
 
-					<div class="col-xs-12 col-sm-6 movieRelation">
+					<div class="col-xs-12 col-sm-6 movieRelation spaceEffect">
 						<div class="row">
 							<a href="{{ url($mr->slug) }}">
 								<div class="col-sm-6 col-md-4">
@@ -174,7 +174,7 @@
 								</div>
 								<div class="col-sm-6 col-md-8">
 									<h4>{{ $mr->title }}</h4>
-									<p class="text-justify">{{ str_limit($mr->synopsis,80) }}</p>
+									<p class="text-justify">{{ str_limit($mr->synopsis,60) }}</p>
 								</div>
 							</a>
 						</div>
@@ -194,7 +194,7 @@
 
 			@foreach($moviesRecomendations as $mr)
 
-				<div class="col-xs-12 col-sm-6 movieRelation">
+				<div class="col-xs-12 col-sm-6 movieRelation spaceEffect">
 					<div class="row">
 						<a href="{{ url($mr->slug) }}">
 							<div class="col-sm-6 col-md-4">
@@ -202,7 +202,7 @@
 							</div>
 							<div class="col-sm-6 col-md-8">
 								<h4>{{ $mr->title }}</h4>
-								<p class="text-justify">{{ str_limit($mr->synopsis,80) }}</p>
+								<p class="text-justify">{{ str_limit($mr->synopsis,60) }}</p>
 							</div>
 						</a>
 					</div>

@@ -1,7 +1,7 @@
 <nav>
-	<div class="container-fluid">
-		<ul class="nav nav-pills">
-		  <li role="presentation" class="active"><a href="{{ url('/') }}">Todas</a></li>
+	<div class="container">
+		<ul class="nav-menu">
+		  <li role="presentation"><a href="{{ url('/') }}">Todas</a></li>
 		  <li role="presentation"><a href="{{ url('genero/Comedia') }}">Comedia</a></li>
 		  <li role="presentation"><a href="{{ url('genero/Suspenso') }}">Suspenso</a></li>
 		  <li role="presentation"><a href="{{ url('genero/Drama') }}">Drama</a></li>

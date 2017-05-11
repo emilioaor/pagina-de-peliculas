@@ -22,7 +22,7 @@
 @endsection
 
 @section('content')
-	<div class="container-fluid">
+	<div class="container">
 		
 		<h2>Suscripción Completa</h2><hr>
 		<p>Gracias por suscribirte en la web, recibiras un email cada sabado con todas las películas publicadas durante la semana.</p>

@@ -24,7 +24,7 @@
 @endsection
 
 @section('content')
-	<div class="container-fluid">
+	<div class="container">
 		
 		<h2 class="text-center">@yield('genre')</h2>
 		<div class="row">

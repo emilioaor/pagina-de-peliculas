@@ -21,39 +21,43 @@
 
 	</script>
 
-	<div class="jumbotron">
-		<div class="container-fluid">
-			<div class="spaceLogo">
-				<a href="{{ url('/') }}"><img src="{{ url('images/logo.png') }}" alt="Ver películas online o descargar HD gratis" title="Ver películas online o descargar HD gratis"></a>
-			</div>
-			<h1 class="text-center">@yield('jumbotron-h1')</h1>
-			<p class="text-justify">@yield('jumbotron-p')</p>
-		</div>
-
-		<section class="spaceSearch">
-		
-			<div class="container-fluid">
-				
-				<div class="row">
-			  
-					<div class="col-md-6 col-md-offset-3">
-						
-						<form action="{{ url('/') }}" method="get">
+	<div id="navbar">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-5 col-md-6 col-icon">
+					<a href="{{ url('/') }}">
+						<img src="{{ asset('images/logo_bar.png') }}" class="img-responsive" id="log" alt="Ver películas online o descargar HD gratis" title="Ver películas online o descargar HD gratis">
+						<h3>Cine en Casa</h3>
+					</a>
+				</div>
+				<div class="col-xs-7 col-md-6 col-search">
+					<form action="" method="get">
 							
-							<div class="input-group">
-								<input type="text" class="form-control" name="title" placeholder="Buscar...">
-								<span class="input-group-btn">
-									<button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
-								</span>
-							</div>
-						</form>
-
-					</div>
-
+						<div class="input-group">
+							<input type="text" class="form-control" name="title" placeholder="Buscar...">
+							<span class="input-group-btn">
+								<button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+							</span>
+						</div>
+					</form>
 				</div>
 			</div>
-		</section>
+		</div>
+	</div>
 
+	<div class="jumbotron">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3">
+					<a href="{{ url('/') }}"><img src="{{ url('images/logo.png') }}" alt="Ver películas online o descargar HD gratis" title="Ver películas online o descargar HD gratis"></a>
+				</div>
+
+				<div class="col-md-9">
+					<h1 class="text-center">@yield('jumbotron-h1')</h1>
+					<p class="text-justify">@yield('jumbotron-p')</p>	
+				</div>
+			</div>
+		</div>
 	</div>
 
 	@include('template.nav')
@@ -64,8 +68,8 @@
 
 	<aside>
 		
-		<div class="container-fluid">
-			
+		<div class="container">
+			<hr class="hr">
 			<div class="row">
 
 				<div class="col-md-6">
@@ -80,7 +84,7 @@
 						</div>
 
 						<div class="form-group">
-							<button type="submit" class="btn btn-primary">Suscribir</button>
+							<button type="submit" class="button-p">Suscribir</button>
 						</div>
 					</form>
 				</div>
@@ -89,9 +93,9 @@
 					<h3>Redes Sociales</h3>
 					<div class=".col-md.12">
 						<p>Siguenos por nuestras redes sociales</p>
-						<a target="_blank" href="https://www.facebook.com/peliculascineencasa" class="btn btn-primary" rel="nofollow">F</a>
-						<a target="_blank" href="https://plus.google.com/b/114711418691165972764/+CineenCasaPeliculas" class="btn btn-primary" rel="nofollow">G</a>
-						<a target="_blank" href="https://www.youtube.com/channel/UCCfK6k6DKyv1jCxHFJ3mUzg" class="btn btn-primary" rel="nofollow">Y</a>
+						<a target="_blank" href="https://www.facebook.com/peliculascineencasa" rel="nofollow"><span class="social-icon facebook"></span></a>
+						<a target="_blank" href="https://plus.google.com/b/114711418691165972764/+CineenCasaPeliculas" rel="nofollow"><span class="social-icon googleplus"></span></a>
+						<a target="_blank" href="https://www.youtube.com/channel/UCCfK6k6DKyv1jCxHFJ3mUzg" rel="nofollow"><span class="social-icon youtube"></span></a>
 					</div>
 				</div>
 
@@ -100,13 +104,13 @@
 	</aside>
 
 	<footer>
-		<div class="container-fluid">
+		<div class="container">
 			<p class="text-center">Películas Online | Películas Gratis | Descargar Películas | Películas HD 1080p | Descargar Películas por MEGA</p>
 		</div>
 	</footer>
 	
 
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="{{ asset('js/jquery.js') }}"></script>
 	<script src="{{ url('js/bootstrap.min.js') }}"></script>
 	<script src="{{ url('js/eventos.js') }}"></script>
 </body>

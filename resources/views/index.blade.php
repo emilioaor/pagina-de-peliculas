@@ -24,9 +24,10 @@
 @endsection
 
 @section('content')
-	<div class="container-fluid">
+	<div class="container">
 		
 		<h2 class="text-center">Todas</h2>
+
 		<div class="row">
 			
 			@foreach($movies as $movie)
@@ -40,9 +41,6 @@
 								<strong>{{ $movie->title }} ({{ $movie->year }})</strong><br><br>
 								{{ str_limit($movie->synopsis,130) }}
 								<br>
-								@foreach($movie->genres as $genres)
-										<br> >{{ $genres->name }}
-								@endforeach
 							</p>
 						</a>
 					</div>
