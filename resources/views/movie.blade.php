@@ -123,20 +123,11 @@
 				  	
 				</div>
 
-				<div class="row spaceVideo">
-					<p class="text-center spaceClose"><a href="JavaScript:closeAll()" class="btn btn-danger">Cerrar</a></p>
-					<p class="text-center" id="thevideos2">{!! $movie->thevideos2 !!}</p>
-					<div class="col-md-8 col-md-offset-2">
-						<div id="spaceVideo" class="embed-responsive embed-responsive-16by9">
-						  	
-						</div>
-					</div>
-				</div>
-
 				<div class="loading text-center" id="loading">
 					<img src="{{ url('images/loading.gif') }}" class="img-responsive img-limit" >
 				</div>
-
+			</div>
+			<div class="col-xs-12 text-center spaceDownload">
 				@if($movie->download <> ' ')
 					<a target="_blank" class="button-def" href="http://adf.ly/11273555/http://adf.ly/11273555/{{ url('download/'.dechex($movie->id) ) }}" rel="nofollow">MEGA</a>
 				@endif
