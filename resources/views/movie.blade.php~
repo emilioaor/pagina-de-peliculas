@@ -13,7 +13,7 @@
 @endsection
 
 @section('title')
-	{{ $movie->title }} ({{ $movie->year }}) online o descargar HD
+	Ver {{ $movie->title }} ({{ $movie->year }}) online o descargar HD gratis
 @endsection
 
 @section('jumbotron-h1')
@@ -21,7 +21,7 @@
 @endsection
 
 @section('jumbotron-p')
-	Pelicula <strong>{{ $movie->title }} online</strong> para descargar en calidad HD 1080p y audio latino. Descarga disponible por MEGA
+	Ver y descargar la película  <strong>{{ $movie->title }} online</strong> en calidad HD 1080p y audio latino. Descarga disponible por MEGA
 @endsection
 
 @section('content')
@@ -33,34 +33,36 @@
       js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.7&appId=1651000515218750";
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));</script>
-	<div class="container">
+	<div class="container-fluid">
 		
 		<h2 class="text-center">{{ $movie->title }}</h2><hr>
-
-		<div class="row detail-movie">
-
+		<div class="row">
+			
 			<div class="col-sm-6">
-				<img src="{{ url($movie->image) }}" id="image-movie" class="img-responsive" alt="{{ $movie->title }} online o descargar" title="{{ $movie->title }} online o descargar">
+				<img src="{{ url($movie->image) }}" class="img-responsive" alt="{{ $movie->title }} online o descargar" title="{{ $movie->title }} online o descargar">
 			</div>
 			<div class="col-sm-6">
 				<br>
 				<p class="text-justify">{{ $movie->synopsis }}<p>
+
 				<p>
-					<strong>Genero(s): </strong>
+					<strong>Genero: </strong>
 					@foreach($movie->genres as $genre)
 						>{{ $genre->name }}
 					@endforeach
 				</p>
+
 				<p>
 					<strong>Calidad: </strong> 1080p
 				</p>
+
 				<p>
 					<strong>Audio: </strong>Español Latino
 				</p>
+
 				<p>
 					<strong>Audio Descarga: </strong>Español Latino e ingles subtitulada
 				</p>
-
 				<br>
 				<div class="alert alert-info" role="alert">
 					<p><strong>¿Sabias que? </strong>Una web requiere gastos de alojamiento, mantenimiento y muchas horas de trabajo y permanece online gracias al apoyo de quienes nos visitan. Una pequeña donación será de gran ayuda para continuar en línea mucho mas tiempo. Ayudanos!</p>
@@ -96,48 +98,53 @@
 			<br>
 			<div class="alert alert-danger" role="alert">
 				<strong>ATENCION: </strong>
-				Por el momento este contenido solo esta disponible para descargar y puede que en menor calidad.
+				Recuerde que las películas estan alojadas en servidores ajenos a esta web. Por el momento este contenido solo esta disponible para descargar y puede que en menor calidad. Gracias por su comprensión.
 			</div>
 		@endif
 
 		<div class="row spaceButtons">
-			<div class="col-sm-6 col-md-3 text-center"><br><button onclick="JavaScript:obtenerVideo('{{ url($movie->id.'/video/1') }}')" class="button-p">Ver Trailer</button></div>
+			<div class="col-sm-6 col-md-3 text-center"><br><a href="JavaScript:obtenerVideo('{{ url($movie->id.'/video/1') }}')" class="btn btn-primary">Ver Trailer</a></div>
 
 			@if($movie->completa=='SI')
-				<div class="col-sm-6 col-md-3 text-center"><br><button onclick="JavaScript:obtenerVideo('{{ url($movie->id.'/video/2') }}')" class="button-p">Ver en UpTobox</button></div>
+				<div class="col-sm-6 col-md-3 text-center"><br><a href="JavaScript:obtenerVideo('{{ url($movie->id.'/video/2') }}')" class="btn btn-primary">Ver en UpTobox</a></div>
 			@endif
 
 			@if($movie->completa=='SI')
-				<div class="col-sm-6 col-md-3 text-center"><br><button onclick="JavaScript:obtenerVideo('{{ url($movie->id.'/video/3') }}')" class="button-p">Ver en TheVideos</button></div>
+				<div class="col-sm-6 col-md-3 text-center"><br><a href="JavaScript:obtenerVideo('{{ url($movie->id.'/video/3') }}')" class="btn btn-primary">Ver en TheVideos</a></div>
 			@endif()
 
-			<div class="col-sm-6 col-md-3 text-center"><br><button onclick="JavaScript:Download()" class="button-p">Descargar</button></div>	
+			<div class="col-sm-6 col-md-3 text-center"><br><a href="JavaScript:Download()" class="btn btn-primary">Descargar</a></div>	
 		</div>
 
 		<div class="row spaceVideo">
-			<p class="text-center spaceClose"><button onclick="JavaScript:closeAll()" class="button-d">Cerrar</button></p>
+			<p class="text-center spaceClose"><a href="JavaScript:closeAll()" class="btn btn-danger">Cerrar</a></p>
 			<p class="text-center" id="thevideos2">{!! str_replace('href="', 'href="http://adf.ly/11273555/http://adf.ly/11273555/', $movie->thevideos2) !!}</p>
 			<div class="col-md-8 col-md-offset-2">
 				
 				<div id="spaceVideo" class="embed-responsive embed-responsive-16by9">
 				  	
 				</div>
-
-				<div class="loading text-center" id="loading">
-					<img src="{{ url('images/loading.gif') }}" class="img-responsive img-limit" >
-				</div>
 			</div>
-			<div class="col-xs-12 text-center spaceDownload">
+		</div>
+
+		<div class="loading text-center" id="loading">
+			<img src="{{ url('images/loading.gif') }}" class="img-responsive img-limit" >
+		</div>
+
+		<div class="row">
+			<div class="spaceDownload col-md-12 text-center">
+				<p>Seleccione un metodo de descarga.</p>
+
 				@if($movie->download <> ' ')
-					<a target="_blank" class="button-def" href="http://adf.ly/11273555/http://adf.ly/11273555/{{ url('download/'.dechex($movie->id) ) }}" rel="nofollow">MEGA</a>
+					<a target="_blank" class="btn btn-default" href="http://adf.ly/11273555/http://adf.ly/11273555/{{ url('download/'.dechex($movie->id) ) }}" rel="nofollow">MEGA</a>
 				@endif
 
 				@if($movie->uploaded <> ' ')
-					<a target="_blank" class="button-def" href="http://adf.ly/11273555/http://adf.ly/11273555/{{ $movie->uploaded }}" rel="nofollow">Uploaded</a>
+					<a target="_blank" class="btn btn-default" href="http://adf.ly/11273555/http://adf.ly/11273555/{{ $movie->uploaded }}" rel="nofollow">Uploaded</a>
 				@endif
 
 				@if($movie->turbobit <> ' ')
-					<a target="_blank" class="button-def" href="http://adf.ly/11273555/http://adf.ly/11273555/{{ $movie->turbobit }}" rel="nofollow">Turbobit</a>
+					<a target="_blank" class="btn btn-default" href="http://adf.ly/11273555/http://adf.ly/11273555/{{ $movie->turbobit }}" rel="nofollow">Turbobit</a>
 				@endif
 			</div>
 		</div>
@@ -159,7 +166,7 @@
 				
 				@foreach($moviesRelations as $mr)
 
-					<div class="col-xs-12 col-sm-6 movieRelation spaceEffect">
+					<div class="col-xs-12 col-sm-6 movieRelation">
 						<div class="row">
 							<a href="{{ url($mr->slug) }}">
 								<div class="col-sm-6 col-md-4">
@@ -167,7 +174,7 @@
 								</div>
 								<div class="col-sm-6 col-md-8">
 									<h4>{{ $mr->title }}</h4>
-									<p class="text-justify">{{ str_limit($mr->synopsis,60) }}</p>
+									<p class="text-justify">{{ str_limit($mr->synopsis,80) }}</p>
 								</div>
 							</a>
 						</div>
@@ -187,7 +194,7 @@
 
 			@foreach($moviesRecomendations as $mr)
 
-				<div class="col-xs-12 col-sm-6 movieRelation spaceEffect">
+				<div class="col-xs-12 col-sm-6 movieRelation">
 					<div class="row">
 						<a href="{{ url($mr->slug) }}">
 							<div class="col-sm-6 col-md-4">
@@ -195,7 +202,7 @@
 							</div>
 							<div class="col-sm-6 col-md-8">
 								<h4>{{ $mr->title }}</h4>
-								<p class="text-justify">{{ str_limit($mr->synopsis,60) }}</p>
+								<p class="text-justify">{{ str_limit($mr->synopsis,80) }}</p>
 							</div>
 						</a>
 					</div>

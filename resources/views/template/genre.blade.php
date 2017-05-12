@@ -4,7 +4,7 @@
 	<meta property="og:url"           content="http://peliculascineencasa.com" />
 	<meta property="og:type"          content="website" />
 	<meta property="og:title"         content="Cine en Casa" />
-	<meta property="og:description"   content="Venta de películas para descargar genero @yield('genre') online en full HD 1080p y audio latino!. Descargas a 1 solo link desde MEGA" />
+	<meta property="og:description"   content="Ver películas o descargar genero @yield('genre') online en full HD 1080p y audio latino!. Descargas a 1 solo link desde MEGA" />
 	<meta property="og:image"         content="http://peliculascineencasa.com/images/banner.jpg" />
 @endsection
 
@@ -12,15 +12,15 @@
 	@if(Request('page') && Request('page')!='1' )
 		{{ Request('page').' - ' }}
 	@endif
-	Venta de Peliculas desde 10 bsF genero @yield('genre') Online para Descargar HD
+	Ver o descargar películas online genero @yield('genre') HD gratis
 @endsection
 
 @section('jumbotron-h1')
-	Venta de películas desde 10 bsF para descargar genero @yield('genre') online HD 1080p audio latino
+	Ver y descargar películas online genero @yield('genre') HD 1080p audio latino gratis
 @endsection
 
 @section('jumbotron-p')
-	Venta de tus películas favoritas desde 10 bsF genero @yield('genre') en línea todas disponibles para ver y descargar en full HD 1080p audio latino 1 solo link MEGA!. Compra un sin fin de horas de películas desde la comodidad de tu hogar.
+	Tus películas favoritas genero @yield('genre') en línea todas disponibles para ver y descargar en full HD 1080p audio latino 1 solo link MEGA gratis!. Tenemos para ti un sin fin de horas de películas desde la comodidad de tu hogar.
 @endsection
 
 @section('content')
