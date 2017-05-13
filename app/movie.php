@@ -9,7 +9,7 @@ class movie extends Model
 {
     protected $table = 'movies';
 
-    protected $fillable = ['title','synopsis','image','download','year','slug','trailer','online','uploaded','turbobit','thevideos','thevideos2','completa','id_relation','price'];
+    protected $fillable = ['title','synopsis','image','download','year','slug','trailer','online','uploaded','turbobit','thevideos','thevideos2','completa','id_relation'];
 
     public function relation(){
 
