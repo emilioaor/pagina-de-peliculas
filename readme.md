@@ -1,27 +1,38 @@
-## Laravel PHP Framework
+Cine en Casa
+=============================================
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+Página web de películas con contenido autoadministrable
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+Niveles de usuarios:
+--------------------------------------------------------------------------------
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+#### Admin:
 
-## Official Documentation
+* Registrar películas
+* Actualizar links caidos
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+#### Normal:
+* No requieren autenticación
+* Visualizar todo el contenido de la web, videos, enlaces, etc
 
-## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+Instalación
+------------------------------------------------------------------------------
+1. Renombrar el archivo **.env.example** por **.env** en la raíz del proyecto
 
-## Security Vulnerabilities
+2. En la raíz del proyecto ejecuta el siguiente comando para instalar dependencias de backend
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+        composer install
 
-### License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+3. Configurar los datos de conexion a la base de datos
+
+4. Ejecutar el siguiente comando para generar la base de datos:
+
+        php artisan migrate
+
+5. Puedes probar fácilmente la aplicación con el siguiente comando:
+
+        php artisan serve
+
+    Con esto te puedes conectar por la siguiente url: **http://localhost:8000**

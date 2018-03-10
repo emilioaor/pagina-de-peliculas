@@ -24,8 +24,10 @@
 @section('content')
 	<div class="container">
 		
-		<h2>Suscripción Completa</h2><hr>
-		<p>Gracias por suscribirte en la web, recibiras un email cada sabado con todas las películas publicadas durante la semana.</p>
-		<p>Para volver a la lista de películas has click <a href="{{ url('/') }}">aqui</a></p>
+		<div class="alert alert-success">
+			<h2>Suscripción Completa</h2><hr>
+			<p>Gracias por suscribirte en la web, recibiras un email cada sabado con todas las películas publicadas durante la semana.</p>
+			<p>Para volver a la lista de películas has click <a href="{{ url('/') }}">aqui</a></p>
+		</div>
 	</div>
 @endsection

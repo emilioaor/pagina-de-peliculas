@@ -12,6 +12,10 @@
 	<meta property="fb:app_id" content="1651000515218750"/>
 @endsection
 
+@section('css')
+	<script src="https://www.paypalobjects.com/api/checkout.js"></script>
+@endsection
+
 @section('title')
 	{{ $movie->title }} ({{ $movie->year }}) online o descargar HD
 @endsection
@@ -66,28 +70,23 @@
 					<p><strong>¿Sabias que? </strong>Una web requiere gastos de alojamiento, mantenimiento y muchas horas de trabajo y permanece online gracias al apoyo de quienes nos visitan. Una pequeña donación será de gran ayuda para continuar en línea mucho mas tiempo. Ayudanos!</p>
 				</div>
 				<div class="text-center">
-					<a mp-mode="dftl" href="https://www.mercadopago.com/mlv/checkout/start?pref_id=213149413-5f1d12e5-98ff-4841-8a8d-959383fccfec" name="MP-payButton" class='blue-ar-l-rn-none'>Donar 10 bsF</a>
-					<script type="text/javascript">
-					(function(){function $MPC_load(){window.$MPC_loaded !== true && (function(){var s = document.createElement("script");s.type = "text/javascript";s.async = true;s.src = document.location.protocol+"//secure.mlstatic.com/mptools/render.js";var x = document.getElementsByTagName('script')[0];x.parentNode.insertBefore(s, x);window.$MPC_loaded = true;})();}window.$MPC_loaded !== true ? (window.attachEvent ?window.attachEvent('onload', $MPC_load) : window.addEventListener('load', $MPC_load, false)) : null;})();
-					</script>
-				</div>
-				<div class="text-center">
-					<a mp-mode="dftl" href="https://www.mercadopago.com/mlv/checkout/start?pref_id=213149413-9beaacb4-1730-410b-88c1-ddaed50ee284" name="MP-payButton" class='blue-ar-l-rn-none'>Donar 20 bsF</a>
-					<script type="text/javascript">
-					(function(){function $MPC_load(){window.$MPC_loaded !== true && (function(){var s = document.createElement("script");s.type = "text/javascript";s.async = true;s.src = document.location.protocol+"//secure.mlstatic.com/mptools/render.js";var x = document.getElementsByTagName('script')[0];x.parentNode.insertBefore(s, x);window.$MPC_loaded = true;})();}window.$MPC_loaded !== true ? (window.attachEvent ?window.attachEvent('onload', $MPC_load) : window.addEventListener('load', $MPC_load, false)) : null;})();
-					</script>
-				</div>
-				<div class="text-center">
-					<a mp-mode="dftl" href="https://www.mercadopago.com/mlv/checkout/start?pref_id=213149413-fbc279af-b7b9-4269-bf51-db21e1e25a74" name="MP-payButton" class='blue-ar-l-rn-none'>Donar 50 bsF</a>
-					<script type="text/javascript">
-					(function(){function $MPC_load(){window.$MPC_loaded !== true && (function(){var s = document.createElement("script");s.type = "text/javascript";s.async = true;s.src = document.location.protocol+"//secure.mlstatic.com/mptools/render.js";var x = document.getElementsByTagName('script')[0];x.parentNode.insertBefore(s, x);window.$MPC_loaded = true;})();}window.$MPC_loaded !== true ? (window.attachEvent ?window.attachEvent('onload', $MPC_load) : window.addEventListener('load', $MPC_load, false)) : null;})();
-					</script>
-				</div>
-				<div class="text-center">
-					<a mp-mode="dftl" href="https://www.mercadopago.com/mlv/checkout/start?pref_id=213149413-cd216a68-84f0-4505-8efd-b4fa09102fd9" name="MP-payButton" class='blue-ar-l-rn-none'>Donar 100 bsF</a>
-					<script type="text/javascript">
-					(function(){function $MPC_load(){window.$MPC_loaded !== true && (function(){var s = document.createElement("script");s.type = "text/javascript";s.async = true;s.src = document.location.protocol+"//secure.mlstatic.com/mptools/render.js";var x = document.getElementsByTagName('script')[0];x.parentNode.insertBefore(s, x);window.$MPC_loaded = true;})();}window.$MPC_loaded !== true ? (window.attachEvent ?window.attachEvent('onload', $MPC_load) : window.addEventListener('load', $MPC_load, false)) : null;})();
-					</script>
+					<h3>¿Cuanto le gustaría donar?</h3>
+					<h4 id="amountDonation"></h4>
+					<div class="form-group hidden" id="cancelDonation">
+						<button onclick="changeAmount()" class="btn btn-danger">Cancelar</button>
+					</div>
+					<div class="row" id="spaceDonation">
+						<div class="col-xs-3 col-xs-offset-3">
+							<input type="number" id="donation" class="form-control">
+						</div>
+						<div class="col-xs-1">
+							<h4>USD</h4>
+						</div>
+						<div class="col-xs-2">
+							<button onclick="selectAmount()" class="btn btn-success">Donar</button>
+						</div>
+					</div>
+					<div id="paypal-button" class="hidden"></div>
 				</div>
 			</div>
 		</div>
@@ -101,15 +100,21 @@
 		@endif
 
 		<div class="row spaceButtons">
-			<div class="col-sm-6 col-md-3 text-center"><br><button onclick="JavaScript:obtenerVideo('{{ url($movie->id.'/video/1') }}')" class="button-p">Ver Trailer</button></div>
+			<div class="col-sm-6 col-md-3 text-center">
+				<br>
+				<button onclick="JavaScript:obtenerVideo('{{ url($movie->id.'/video/1') }}')" class="button-p">Trailer</button>
+			</div>
 
 			@if($movie->completa=='SI')
-				<div class="col-sm-6 col-md-3 text-center"><br><button onclick="JavaScript:obtenerVideo('{{ url($movie->id.'/video/2') }}')" class="button-p">Ver en UpTobox</button></div>
+				<div class="col-sm-6 col-md-3 text-center">
+					<br>
+					<button onclick="JavaScript:obtenerVideo('{{ url($movie->id.'/video/2') }}')" class="button-p">Opción 1</button>
+				</div>
 			@endif
 
 			@if($movie->completa=='SI')
-				<div class="col-sm-6 col-md-3 text-center"><br><button onclick="JavaScript:obtenerVideo('{{ url($movie->id.'/video/3') }}')" class="button-p">Ver en TheVideos</button></div>
-			@endif()
+				<div class="col-sm-6 col-md-3 text-center"><br><button onclick="JavaScript:obtenerVideo('{{ url($movie->id.'/video/3') }}')" class="button-p">Opción 2</button></div>
+			@endif
 
 			<div class="col-sm-6 col-md-3 text-center"><br><button onclick="JavaScript:Download()" class="button-p">Descargar</button></div>	
 		</div>
@@ -132,11 +137,11 @@
 					<a target="_blank" class="button-def" href="http://adf.ly/11273555/http://adf.ly/11273555/{{ url('download/'.dechex($movie->id) ) }}" rel="nofollow">MEGA</a>
 				@endif
 
-				@if($movie->uploaded <> ' ')
+				@if($movie->uploaded <> ' ' && false)
 					<a target="_blank" class="button-def" href="http://adf.ly/11273555/http://adf.ly/11273555/{{ $movie->uploaded }}" rel="nofollow">Uploaded</a>
 				@endif
 
-				@if($movie->turbobit <> ' ')
+				@if($movie->turbobit <> ' ' && false)
 					<a target="_blank" class="button-def" href="http://adf.ly/11273555/http://adf.ly/11273555/{{ $movie->turbobit }}" rel="nofollow">Turbobit</a>
 				@endif
 			</div>
@@ -205,8 +210,81 @@
 
 		</div>
 
-		
-
-
 	</div>
+@endsection
+
+@section('js')
+	<script>
+		var amountToDonation = 0;
+
+		paypal.Button.render({
+			env: '{{ env('APP_ENV') === 'production' ? 'production' : 'sandbox' }}', // Or 'sandbox',
+
+			commit: true, // Show a 'Pay Now' button
+
+			client: {
+				sandbox:    'AUQ0NPbGLi30YZi9130zPk-EU7U4nH0C1BbC1ctBf46npA_dVO_-dvL2whlhfJ_DkjLKfwhmLgER2-T7',
+				production: 'xxxxxxxxx'
+			},
+
+			style: {
+				color: 'blue',
+				size: 'medium'
+			},
+
+			payment: function(data, actions) {
+				return actions.payment.create({
+					payment: {
+						transactions: [
+							{
+								amount: { total: amountToDonation + '.00', currency: 'USD' }
+							}
+						]
+					}
+				});
+			},
+
+			onAuthorize: function(data, actions) {
+				return actions.payment.execute().then(function(payment) {
+					console.log(payment.state);
+					if (payment.state === 'approved') {
+						location.href = '{{ url('alert/success') }}';
+					}
+
+				});
+			},
+
+			onCancel: function(data, actions) {
+				console.log('Cancelado');
+			},
+
+			onError: function(err) {
+				alert('Error de comunicación, intente de nuevo.');
+			}
+		}, '#paypal-button');
+
+		function selectAmount()
+		{
+			var donation = $('#donation').val();
+
+			if ((donation = parseInt(donation)) && donation >= 1) {
+				amountToDonation = donation;
+
+				$('#spaceDonation').css('display', 'none');
+				$('#paypal-button').removeClass('hidden');
+				$('#amountDonation').html(donation + ' USD');
+				$('#cancelDonation').removeClass('hidden');
+			}
+		}
+
+		function changeAmount()
+		{
+			amountToDonation = 0;
+
+			$('#spaceDonation').css('display', 'block');
+			$('#paypal-button').addClass('hidden');
+			$('#amountDonation').html('');
+			$('#cancelDonation').addClass('hidden');
+		}
+	</script>
 @endsection

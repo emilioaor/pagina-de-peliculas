@@ -29,24 +29,10 @@ class indexController extends Controller
 
         if( count($movie)>0 ){
 
-            $compra = false;
-            //verificar si el usuario esta log
-            if( Auth::check() ){
-
-                //Verificar si ya compro esta película
-                $movieBuys = $movie->users()->get();
-                foreach($movieBuys as $movieBuy){
-
-                    if($movieBuy->id == Auth::user()->id ) $compra = true;
-                }
-
-            }
-
             //Obtener peliculas Recomendadas
             $codGenre = $movie->genres->first()->id;
             
             $moviesRecomendations = movie::join('movies_genres','movies.id','=','id_movie')->join('genres','genres.id','=','id_genre')->where('genres.id','=',$codGenre)->where('movies.id','<>',$movie->id)->orderBy('year','DESC')->orderBy('movies.id','DESC')->get()->take(4);
-
 
             //Verificar si tiene relacion
             if( !is_null($movie->id_relation) ){
@@ -56,7 +42,7 @@ class indexController extends Controller
                 return view('movie')->with('movie',$movie)->with('moviesRecomendations',$moviesRecomendations)->with('moviesRelations',$moviesRelations);
             }
 
-            return view('movie')->with('movie',$movie)->with('moviesRecomendations',$moviesRecomendations)->with('compra',$compra);
+            return view('movie')->with('movie',$movie)->with('moviesRecomendations',$moviesRecomendations);
 
         }else{
             return redirect('error/404');

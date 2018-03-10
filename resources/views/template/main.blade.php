@@ -8,6 +8,7 @@
 	<title>@yield('title')</title>
 	<link rel="stylesheet" href="{{ url('css/bootstrap.min.css') }}">
 	<link rel="stylesheet" href="{{ url('css/estilos.css') }}">
+	@yield('css')
 </head>
 <body>
 	<script>
@@ -103,5 +104,6 @@
 	<script src="{{ asset('js/jquery.js') }}"></script>
 	<script src="{{ url('js/bootstrap.min.js') }}"></script>
 	<script src="{{ url('js/eventos.js') }}"></script>
+	@yield('js')
 </body>
 </html>
